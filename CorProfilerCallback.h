@@ -1,15 +1,16 @@
 #pragma once
+
 namespace JitGrabber
 {
+	static const CLSID CLSID_CorProfilerCallback = { 0x7834a07a, 0xbec2, 0x460c, { 0x72, 0x9b, 0x48, 0x1c, 0x16, 0x2a, 0x7c, 0x70 } };
 
-    class __declspec(uuid("7834A07A-BEC2-460C-9B72-481C162A7C70"))
-        CorProfilerCallback :
+    class CorProfilerCallback :
         public ICorProfilerCallback3
     {
     public:
 
         CorProfilerCallback()
-            : m_cRef(1)
+            : m_cRef(0)
         { }
 
         virtual ~CorProfilerCallback() {}
@@ -25,7 +26,7 @@ namespace JitGrabber
 
         virtual HRESULT STDMETHODCALLTYPE QueryInterface(
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ _COM_Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject);
+            /* [iid_is][out] */ _COM_Outptr_ void **ppvObject);
 
         virtual ULONG STDMETHODCALLTYPE AddRef()
         {
@@ -38,11 +39,14 @@ namespace JitGrabber
         virtual ULONG STDMETHODCALLTYPE Release()
         {
 			scoped_lock(m_mutexRef);
+
             --m_scRef;
-            auto cRef = --m_cRef;
-            if (cRef <= 0)
+			--m_cRef;
+
+            if (m_cRef == 0)
                 delete this;
-            return cRef;
+
+            return m_cRef;
         }
 
 #pragma endregion
@@ -338,8 +342,8 @@ namespace JitGrabber
 
         wstring GetFunctionName(FunctionID funcID);
 
-        ULONG m_cRef;						// Reference count.
-        static ULONG m_scRef;						// Reference count.
+        ULONG m_cRef;         // Число ссылок на конкретный объект
+        static ULONG m_scRef; // Число ссылок на все объекты класса
 
 		mutex m_mutexRef;
 

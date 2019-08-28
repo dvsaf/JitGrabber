@@ -13,7 +13,7 @@ namespace JitGrabber
         //    return (*it).second;
 
         wstring sResult;
-
+#if 0
         ClassID classId;
         ModuleID moduleId;
         mdToken token;
@@ -64,7 +64,7 @@ namespace JitGrabber
         }
 
         //g_funcNames[funcID] = sResult;
-
+#endif
         return sResult;
     }
 
@@ -73,7 +73,7 @@ namespace JitGrabber
 
     HRESULT STDMETHODCALLTYPE CorProfilerCallback::QueryInterface(
         /* [in] */ REFIID riid,
-        /* [iid_is][out] */ _COM_Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject)
+        /* [iid_is][out] */ _COM_Outptr_ void **ppvObject)
     {
         wcerr << L"[" __FUNCTIONW__ "]" << L" " << setw(8) << setfill(L'0') << hex << riid.Data1 << endl;
 
@@ -83,13 +83,13 @@ namespace JitGrabber
         *ppvObject = nullptr;
 
         // Pick the right v-table based on the IID passed in.
-        if (riid == __uuidof(IUnknown))
+        if (riid == IID_IUnknown)
             *ppvObject = (IUnknown *)this;
-        else if (riid == __uuidof(ICorProfilerCallback))
+        else if (riid == IID_ICorProfilerCallback)
             *ppvObject = (ICorProfilerCallback *)this;
-        else if (riid == __uuidof(ICorProfilerCallback2))
+        else if (riid == IID_ICorProfilerCallback2)
             *ppvObject = (ICorProfilerCallback2 *)this;
-        else if (riid == __uuidof(ICorProfilerCallback3))
+        else if (riid == IID_ICorProfilerCallback3)
             *ppvObject = (ICorProfilerCallback3 *)this;
 
         // If successful, add a reference for out pointer and return.
@@ -113,7 +113,7 @@ namespace JitGrabber
     {
         wcerr << L"[" __FUNCTIONW__ "]" << endl;
 
-        pICorProfilerInfoUnk->QueryInterface(&m_pCorProfilerInfo);
+        pICorProfilerInfoUnk->QueryInterface(IID_ICorProfilerInfo3, (void**)&m_pCorProfilerInfo);
 
         if (FAILED(m_pCorProfilerInfo->SetEventMask(COR_PRF_MONITOR_JIT_COMPILATION)))
         {

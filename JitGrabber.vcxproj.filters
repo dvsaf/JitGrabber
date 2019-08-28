@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="WinAPI Replacement Files">
+      <UniqueIdentifier>{7776633b-6ab3-4141-9eb5-41aff1916ca2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -26,6 +29,24 @@
     </ClInclude>
     <ClInclude Include="CorProfilerCallback.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CorDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CorProfilingDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CorHeadersDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ComDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CorDebugDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
