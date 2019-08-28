@@ -13,7 +13,6 @@ namespace JitGrabber
         //    return (*it).second;
 
         wstring sResult;
-#if 0
         ClassID classId;
         ModuleID moduleId;
         mdToken token;
@@ -30,7 +29,7 @@ namespace JitGrabber
             return (wstringstream() << L"<func_" << funcID << L">").str();
         }
 
-        mdTypeDef tokenClass;
+		mdTypeDef tokenClass;
         WCHAR szMethodName[4096];
         ULONG chMethod;
         DWORD dwAttr;
@@ -38,7 +37,7 @@ namespace JitGrabber
         ULONG cbSigBlob;
         ULONG ulCodeRVA;
         DWORD dwImplFlags;
-        if (SUCCEEDED(pMetaDataImport->GetMethodProps(token, &tokenClass, szMethodName, 4096, &chMethod, &dwAttr, &pvSigBlob, &cbSigBlob, &ulCodeRVA, &dwImplFlags)))
+		if (SUCCEEDED(pMetaDataImport->GetMethodProps(token, &tokenClass, szMethodName, 4096, &chMethod, &dwAttr, &pvSigBlob, &cbSigBlob, &ulCodeRVA, &dwImplFlags)))
         {
             WCHAR szName[4096];
             ULONG chTypeDef;
@@ -64,7 +63,6 @@ namespace JitGrabber
         }
 
         //g_funcNames[funcID] = sResult;
-#endif
         return sResult;
     }
 
@@ -264,9 +262,9 @@ namespace JitGrabber
     {
         wcerr << L"[" __FUNCTIONW__ "]" << L" " << GetFunctionName(functionId) << endl;
 
-        COR_PRF_CODE_INFO codeInfos[1024];
+        COR_PRF_CODE_INFO codeInfos[512];
         ULONG32 cCodeInfos = 0;
-        m_pCorProfilerInfo->GetCodeInfo2(functionId, 1024, &cCodeInfos, codeInfos);
+        m_pCorProfilerInfo->GetCodeInfo2(functionId, 512, &cCodeInfos, codeInfos);
 
         for (ULONG32 i = 0; i < cCodeInfos; i++)
         {

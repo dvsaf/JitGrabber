@@ -1,6 +1,5 @@
 #pragma once
 
-typedef LPVOID  mdScope;                // Obsolete; not used in the runtime.
 typedef ULONG32 mdToken;                // Generic token
 
 
@@ -104,4 +103,44 @@ struct COR_FIELD_OFFSET
 {
 	mdFieldDef  ridOfField;
 	ULONG       ulOffset;
+};
+
+typedef void* HCORENUM;
+
+// structures and enums moved from COR.H
+typedef uint8_t COR_SIGNATURE;
+
+typedef COR_SIGNATURE* PCOR_SIGNATURE;      // pointer to a cor sig.  Not void* so that
+											// the bytes can be incremented easily
+typedef const COR_SIGNATURE* PCCOR_SIGNATURE;
+
+
+typedef const char* MDUTF8CSTR;
+typedef char* MDUTF8STR;
+
+enum CorOpenFlags
+{
+	ofRead = 0x00000000,     // Open scope for read
+	ofWrite = 0x00000001,     // Open scope for write.
+	ofReadWriteMask = 0x00000001,     // Mask for read/write bit.
+
+	ofCopyMemory = 0x00000002,     // Open scope with memory. Ask metadata to maintain its own copy of memory.
+
+	ofReadOnly = 0x00000010,     // Open scope for read. Will be unable to QI for a IMetadataEmit* interface
+	ofTakeOwnership = 0x00000020,     // The memory was allocated with CoTaskMemAlloc and will be freed by the metadata
+
+	// These are obsolete and are ignored.
+	// ofCacheImage     =   0x00000004,     // EE maps but does not do relocations or verify image
+	// ofManifestMetadata = 0x00000008,     // Open scope on ngen image, return the manifest metadata instead of the IL metadata
+	ofNoTypeLib = 0x00000080,     // Don't OpenScope on a typelib.
+	ofNoTransform = 0x00001000,     // Disable automatic transforms of .winmd files.
+	ofCheckIntegrity = 0x00000800,     // Only open the scope if it passes a code integrity check. Only applies on 
+											// machines with Device Guard enabled and operating system versions that support this.
+
+	// Internal bits
+	ofReserved1 = 0x00000100,     // Reserved for internal use.
+	ofReserved2 = 0x00000200,     // Reserved for internal use.
+	ofReserved3 = 0x00000400,     // Reserved for internal use.
+	ofReserved = 0xffffe740      // All the reserved bits.
+
 };

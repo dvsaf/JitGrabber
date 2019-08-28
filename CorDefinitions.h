@@ -1,5 +1,427 @@
 #pragma once
 
+
+typedef void const* UVCP_CONSTANT;
+
+
+static const IID IID_IMetaDataImport = { 0x7dac8207, 0xd3ae, 0x4c75, { 0x9b, 0x67, 0x92, 0x80, 0x1a, 0x49, 0x7d, 0x44 } };
+
+struct  IMetaDataImport : public IUnknown
+{
+
+	virtual  void  CloseEnum(HCORENUM hEnum) = 0;
+
+	virtual  HRESULT  CountEnum(HCORENUM hEnum, ULONG* pulCount) = 0;
+
+	virtual  HRESULT  ResetEnum(HCORENUM hEnum, ULONG ulPos) = 0;
+
+	virtual  HRESULT  EnumTypeDefs(HCORENUM* phEnum, mdTypeDef rTypeDefs[],
+		ULONG cMax, ULONG* pcTypeDefs) = 0;
+
+	virtual  HRESULT  EnumInterfaceImpls(HCORENUM* phEnum, mdTypeDef td,
+		mdInterfaceImpl rImpls[], ULONG cMax,
+		ULONG* pcImpls) = 0;
+
+	virtual  HRESULT  EnumTypeRefs(HCORENUM* phEnum, mdTypeRef rTypeRefs[],
+		ULONG cMax, ULONG* pcTypeRefs) = 0;
+
+	virtual  HRESULT  FindTypeDefByName(
+		LPCWSTR     szTypeDef,
+		mdToken     tkEnclosingClass,
+		mdTypeDef* ptd) = 0;
+
+	virtual  HRESULT  GetScopeProps(
+		LPWSTR      szName,
+		ULONG       cchName,
+		ULONG* pchName,
+		GUID* pmvid) = 0;
+
+	virtual  HRESULT  GetModuleFromScope(
+		mdModule* pmd) = 0;
+
+	virtual  HRESULT  GetTypeDefProps(
+		mdTypeDef   td,
+		LPWSTR      szTypeDef,
+		ULONG       cchTypeDef,
+		ULONG* pchTypeDef,
+		DWORD* pdwTypeDefFlags,
+		mdToken* ptkExtends) = 0;
+
+	virtual  HRESULT  GetInterfaceImplProps(
+		mdInterfaceImpl iiImpl,
+		mdTypeDef* pClass,
+		mdToken* ptkIface) = 0;
+
+	virtual  HRESULT  GetTypeRefProps(
+		mdTypeRef   tr,
+		mdToken* ptkResolutionScope,
+		LPWSTR      szName,
+		ULONG       cchName,
+		ULONG* pchName) = 0;
+
+	virtual  HRESULT  ResolveTypeRef(mdTypeRef tr, const IID& riid, IUnknown** ppIScope, mdTypeDef* ptd) = 0;
+
+	virtual  HRESULT  EnumMembers(
+		HCORENUM* phEnum,
+		mdTypeDef   cl,
+		mdToken     rMembers[],
+		ULONG       cMax,
+		ULONG* pcTokens) = 0;
+
+	virtual  HRESULT  EnumMembersWithName(
+		HCORENUM* phEnum,
+		mdTypeDef   cl,
+		LPCWSTR     szName,
+		mdToken     rMembers[],
+		ULONG       cMax,
+		ULONG* pcTokens) = 0;
+
+	virtual  HRESULT  EnumMethods(
+		HCORENUM* phEnum,
+		mdTypeDef   cl,
+		mdMethodDef rMethods[],
+		ULONG       cMax,
+		ULONG* pcTokens) = 0;
+
+	virtual  HRESULT  EnumMethodsWithName(
+		HCORENUM* phEnum,
+		mdTypeDef   cl,
+		LPCWSTR     szName,
+		mdMethodDef rMethods[],
+		ULONG       cMax,
+		ULONG* pcTokens) = 0;
+
+	virtual  HRESULT  EnumFields(
+		HCORENUM* phEnum,
+		mdTypeDef   cl,
+		mdFieldDef  rFields[],
+		ULONG       cMax,
+		ULONG* pcTokens) = 0;
+
+	virtual  HRESULT  EnumFieldsWithName(
+		HCORENUM* phEnum,
+		mdTypeDef   cl,
+		LPCWSTR     szName,
+		mdFieldDef  rFields[],
+		ULONG       cMax,
+		ULONG* pcTokens) = 0;
+
+	virtual  HRESULT  EnumParams(
+		HCORENUM* phEnum,
+		mdMethodDef mb,
+		mdParamDef  rParams[],
+		ULONG       cMax,
+		ULONG* pcTokens) = 0;
+
+	virtual  HRESULT  EnumMemberRefs(
+		HCORENUM* phEnum,
+		mdToken     tkParent,
+		mdMemberRef rMemberRefs[],
+		ULONG       cMax,
+		ULONG* pcTokens) = 0;
+
+	virtual  HRESULT  EnumMethodImpls(
+		HCORENUM* phEnum,
+		mdTypeDef   td,
+		mdToken     rMethodBody[],
+		mdToken     rMethodDecl[],
+		ULONG       cMax,
+		ULONG* pcTokens) = 0;
+
+	virtual  HRESULT  EnumPermissionSets(
+		HCORENUM* phEnum,
+		mdToken     tk,
+		DWORD       dwActions,
+		mdPermission rPermission[],
+		ULONG       cMax,
+		ULONG* pcTokens) = 0;
+
+	virtual  HRESULT  FindMember(
+		mdTypeDef   td,
+		LPCWSTR     szName,
+		PCCOR_SIGNATURE pvSigBlob,
+		ULONG       cbSigBlob,
+		mdToken* pmb) = 0;
+
+	virtual  HRESULT  FindMethod(
+		mdTypeDef   td,
+		LPCWSTR     szName,
+		PCCOR_SIGNATURE pvSigBlob,
+		ULONG       cbSigBlob,
+		mdMethodDef* pmb) = 0;
+
+	virtual  HRESULT  FindField(
+		mdTypeDef   td,
+		LPCWSTR     szName,
+		PCCOR_SIGNATURE pvSigBlob,
+		ULONG       cbSigBlob,
+		mdFieldDef* pmb) = 0;
+
+	virtual  HRESULT  FindMemberRef(
+		mdTypeRef   td,
+		LPCWSTR     szName,
+		PCCOR_SIGNATURE pvSigBlob,
+		ULONG       cbSigBlob,
+		mdMemberRef* pmr) = 0;
+
+	virtual  HRESULT  GetMethodProps(
+		mdMethodDef mb,
+		mdTypeDef* pClass,
+		LPWSTR      szMethod,
+		ULONG       cchMethod,
+		ULONG* pchMethod,
+		DWORD* pdwAttr,
+		PCCOR_SIGNATURE* ppvSigBlob,
+		ULONG* pcbSigBlob,
+		ULONG* pulCodeRVA,
+		DWORD* pdwImplFlags) = 0;
+
+	virtual  HRESULT  GetMemberRefProps(
+		mdMemberRef mr,
+		mdToken* ptk,
+		LPWSTR      szMember,
+		ULONG       cchMember,
+		ULONG* pchMember,
+		PCCOR_SIGNATURE* ppvSigBlob,
+		ULONG* pbSig) = 0;
+
+	virtual  HRESULT  EnumProperties(
+		HCORENUM* phEnum,
+		mdTypeDef   td,
+		mdProperty  rProperties[],
+		ULONG       cMax,
+		ULONG* pcProperties) = 0;
+
+	virtual  HRESULT  EnumEvents(
+		HCORENUM* phEnum,
+		mdTypeDef   td,
+		mdEvent     rEvents[],
+		ULONG       cMax,
+		ULONG* pcEvents) = 0;
+
+	virtual  HRESULT  GetEventProps(
+		mdEvent     ev,
+		mdTypeDef* pClass,
+		LPCWSTR     szEvent,
+		ULONG       cchEvent,
+		ULONG* pchEvent,
+		DWORD* pdwEventFlags,
+		mdToken* ptkEventType,
+		mdMethodDef* pmdAddOn,
+		mdMethodDef* pmdRemoveOn,
+		mdMethodDef* pmdFire,
+		mdMethodDef rmdOtherMethod[],
+		ULONG       cMax,
+		ULONG* pcOtherMethod) = 0;
+
+	virtual  HRESULT  EnumMethodSemantics(
+		HCORENUM* phEnum,
+		mdMethodDef mb,
+		mdToken     rEventProp[],
+		ULONG       cMax,
+		ULONG* pcEventProp) = 0;
+
+	virtual  HRESULT  GetMethodSemantics(
+		mdMethodDef mb,
+		mdToken     tkEventProp,
+		DWORD* pdwSemanticsFlags) = 0;
+
+	virtual  HRESULT  GetClassLayout(
+		mdTypeDef   td,
+		DWORD* pdwPackSize,
+		COR_FIELD_OFFSET rFieldOffset[],
+		ULONG       cMax,
+		ULONG* pcFieldOffset,
+		ULONG* pulClassSize) = 0;
+
+	virtual  HRESULT  GetFieldMarshal(
+		mdToken     tk,
+		PCCOR_SIGNATURE* ppvNativeType,
+		ULONG* pcbNativeType) = 0;
+
+	virtual  HRESULT  GetRVA(
+		mdToken     tk,
+		ULONG* pulCodeRVA,
+		DWORD* pdwImplFlags) = 0;
+
+	virtual  HRESULT  GetPermissionSetProps(
+		mdPermission pm,
+		DWORD* pdwAction,
+		void const** ppvPermission,
+		ULONG* pcbPermission) = 0;
+
+	virtual  HRESULT  GetSigFromToken(
+		mdSignature mdSig,
+		PCCOR_SIGNATURE* ppvSig,
+		ULONG* pcbSig) = 0;
+
+	virtual  HRESULT  GetModuleRefProps(
+		mdModuleRef mur,
+		LPWSTR      szName,
+		ULONG       cchName,
+		ULONG* pchName) = 0;
+
+	virtual  HRESULT  EnumModuleRefs(
+		HCORENUM* phEnum,
+		mdModuleRef rModuleRefs[],
+		ULONG       cmax,
+		ULONG* pcModuleRefs) = 0;
+
+	virtual  HRESULT  GetTypeSpecFromToken(
+		mdTypeSpec typespec,
+		PCCOR_SIGNATURE* ppvSig,
+		ULONG* pcbSig) = 0;
+
+	virtual  HRESULT  GetNameFromToken(
+		mdToken     tk,
+		MDUTF8CSTR* pszUtf8NamePtr) = 0;
+
+	virtual  HRESULT  EnumUnresolvedMethods(
+		HCORENUM* phEnum,
+		mdToken     rMethods[],
+		ULONG       cMax,
+		ULONG* pcTokens) = 0;
+
+	virtual  HRESULT  GetUserString(
+		mdString    stk,
+		LPWSTR      szString,
+		ULONG       cchString,
+		ULONG* pchString) = 0;
+
+	virtual  HRESULT  GetPinvokeMap(
+		mdToken     tk,
+		DWORD* pdwMappingFlags,
+		LPWSTR      szImportName,
+		ULONG       cchImportName,
+		ULONG* pchImportName,
+		mdModuleRef* pmrImportDLL) = 0;
+
+	virtual  HRESULT  EnumSignatures(
+		HCORENUM* phEnum,
+		mdSignature rSignatures[],
+		ULONG       cmax,
+		ULONG* pcSignatures) = 0;
+
+	virtual  HRESULT  EnumTypeSpecs(
+		HCORENUM* phEnum,
+		mdTypeSpec  rTypeSpecs[],
+		ULONG       cmax,
+		ULONG* pcTypeSpecs) = 0;
+
+	virtual  HRESULT  EnumUserStrings(
+		HCORENUM* phEnum,
+		mdString    rStrings[],
+		ULONG       cmax,
+		ULONG* pcStrings) = 0;
+
+	virtual  HRESULT  GetParamForMethodIndex(
+		mdMethodDef md,
+		ULONG       ulParamSeq,
+		mdParamDef* ppd) = 0;
+
+	virtual  HRESULT  EnumCustomAttributes(
+		HCORENUM* phEnum,
+		mdToken     tk,
+		mdToken     tkType,
+		mdCustomAttribute rCustomAttributes[],
+		ULONG       cMax,
+		ULONG* pcCustomAttributes) = 0;
+
+	virtual  HRESULT  GetCustomAttributeProps(
+		mdCustomAttribute cv,
+		mdToken* ptkObj,
+		mdToken* ptkType,
+		void const** ppBlob,
+		ULONG* pcbSize) = 0;
+
+	virtual  HRESULT  FindTypeRef(
+		mdToken     tkResolutionScope,
+		LPCWSTR     szName,
+		mdTypeRef* ptr) = 0;
+
+	virtual  HRESULT  GetMemberProps(
+		mdToken     mb,
+		mdTypeDef* pClass,
+		LPWSTR      szMember,
+		ULONG       cchMember,
+		ULONG* pchMember,
+		DWORD* pdwAttr,
+		PCCOR_SIGNATURE* ppvSigBlob,
+		ULONG* pcbSigBlob,
+		ULONG* pulCodeRVA,
+		DWORD* pdwImplFlags,
+		DWORD* pdwCPlusTypeFlag,
+		UVCP_CONSTANT* ppValue,
+		ULONG* pcchValue) = 0;
+
+	virtual  HRESULT  GetFieldProps(
+		mdFieldDef  mb,
+		mdTypeDef* pClass,
+		LPWSTR      szField,
+		ULONG       cchField,
+		ULONG* pchField,
+		DWORD* pdwAttr,
+		PCCOR_SIGNATURE* ppvSigBlob,
+		ULONG* pcbSigBlob,
+		DWORD* pdwCPlusTypeFlag,
+		UVCP_CONSTANT* ppValue,
+		ULONG* pcchValue) = 0;
+	virtual  HRESULT  GetPropertyProps(
+
+		mdProperty  prop,
+		mdTypeDef* pClass,
+		LPCWSTR     szProperty,
+		ULONG       cchProperty,
+		ULONG* pchProperty,
+		DWORD* pdwPropFlags,
+		PCCOR_SIGNATURE* ppvSig,
+		ULONG* pbSig,
+		DWORD* pdwCPlusTypeFlag,
+		UVCP_CONSTANT* ppDefaultValue,
+		ULONG* pcchDefaultValue,
+		mdMethodDef* pmdSetter,
+		mdMethodDef* pmdGetter,
+		mdMethodDef rmdOtherMethod[],
+		ULONG       cMax,
+		ULONG* pcOtherMethod) = 0;
+
+	virtual  HRESULT  GetParamProps(
+		mdParamDef  tk,
+		mdMethodDef* pmd,
+		ULONG* pulSequence,
+		LPWSTR      szName,
+		ULONG       cchName,
+		ULONG* pchName,
+		DWORD* pdwAttr,
+		DWORD* pdwCPlusTypeFlag,
+		UVCP_CONSTANT* ppValue,
+		ULONG* pcchValue) = 0;
+
+	virtual  HRESULT  GetCustomAttributeByName(
+		mdToken     tkObj,
+		LPCWSTR     szName,
+		const void** ppData,
+		ULONG* pcbData) = 0;
+
+	virtual  BOOL  IsValidToken(
+		mdToken     tk) = 0;
+
+	virtual  HRESULT  GetNestedClassProps(
+		mdTypeDef   tdNestedClass,
+		mdTypeDef* ptdEnclosingClass) = 0;
+
+	virtual  HRESULT  GetNativeCallConvFromSig(
+		void const* pvSig,
+		ULONG       cbSig,
+		ULONG* pCallConv) = 0;
+
+	virtual  HRESULT  IsGlobal(
+		mdToken     pd,
+		int* pbGlobal) = 0;
+
+};
+
+
 #if 0
 
 static const IID LIBID_ComPlusRuntime = { 0xbed7f4ea,0x1a96,0x11d2,{0x8f,0x8,0x0,0xa0,0xc9,0xa6,0x18,0x6d} };
@@ -38,7 +460,7 @@ struct IMetaDataEmit;
 struct ICeeGen;
 
 
-typedef UNALIGNED void const* UVCP_CONSTANT;
+
 
 
 

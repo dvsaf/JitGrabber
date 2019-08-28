@@ -166,6 +166,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="WindowsDefinitions.h" />
+    <ClInclude Include="WindowsErrorsDefinitions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClassFactory.cpp" />
