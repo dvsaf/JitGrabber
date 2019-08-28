@@ -6,18 +6,13 @@ namespace JitGrabber
     class ClassFactory :
         public IClassFactory
     {
+
     public:
 
-        ClassFactory()
-            : m_cRef(1)
-        { }
-
-        virtual ~ClassFactory() {}
-
-        static ULONG AllRefCount()
-        {
-            return m_scRef;
-        }
+		static ClassFactory SingleObject()
+		{
+			return m_sSingleObject;
+		}
 
         //
         // IUnknown methods.
@@ -27,19 +22,14 @@ namespace JitGrabber
             REFIID		riid,
             void		**ppvObject);
 
-        virtual ULONG STDMETHODCALLTYPE AddRef()
-        {
-            InterlockedIncrement(&m_scRef);
-            return InterlockedIncrement(&m_cRef);
-        }
+		virtual ULONG STDMETHODCALLTYPE AddRef()
+		{
+			return 1;
+		}
 
         virtual ULONG STDMETHODCALLTYPE Release()
         {
-            InterlockedDecrement(&m_scRef);
-            LONG		cRef = InterlockedDecrement(&m_cRef);
-            if (cRef <= 0)
-                delete this;
-            return (cRef);
+			return 1;
         }
 
 
@@ -55,11 +45,10 @@ namespace JitGrabber
         virtual HRESULT STDMETHODCALLTYPE LockServer(
             BOOL		fLock);
 
-
     private:
 
-        ULONG		m_cRef;						// Reference count.
-        static ULONG		m_scRef;						// Reference count.
-    };
+		static ClassFactory m_sSingleObject;
+
+	};
 
 }

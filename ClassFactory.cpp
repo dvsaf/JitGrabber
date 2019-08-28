@@ -4,7 +4,7 @@
 
 namespace JitGrabber
 {
-    ULONG ClassFactory::m_scRef = 0;
+	ClassFactory ClassFactory::m_sSingleObject;
 
     //*****************************************************************************
     //
