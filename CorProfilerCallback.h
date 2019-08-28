@@ -16,6 +16,8 @@ namespace JitGrabber
 
         static ULONG AllRefCount()
         {
+			scoped_lock(m_mutexRef);
+
             return m_scRef;
         }
 
@@ -27,17 +29,20 @@ namespace JitGrabber
 
         virtual ULONG STDMETHODCALLTYPE AddRef()
         {
-            InterlockedIncrement(&m_scRef);
-            return InterlockedIncrement(&m_cRef);
+			scoped_lock(m_mutexRef);
+
+            ++m_scRef;
+            return ++m_cRef;
         }
 
         virtual ULONG STDMETHODCALLTYPE Release()
         {
-            InterlockedDecrement(&m_scRef);
-            LONG		cRef = InterlockedDecrement(&m_cRef);
+			scoped_lock(m_mutexRef);
+            --m_scRef;
+            auto cRef = --m_cRef;
             if (cRef <= 0)
                 delete this;
-            return (cRef);
+            return cRef;
         }
 
 #pragma endregion
@@ -333,11 +338,12 @@ namespace JitGrabber
 
         wstring GetFunctionName(FunctionID funcID);
 
+        ULONG m_cRef;						// Reference count.
+        static ULONG m_scRef;						// Reference count.
 
-        ULONG		m_cRef;						// Reference count.
-        static ULONG		m_scRef;						// Reference count.
+		mutex m_mutexRef;
 
-        ICorProfilerInfo3* m_pCorProfilerInfo;
+        ICorProfilerInfo3* m_pCorProfilerInfo = nullptr;
 
     };
 
