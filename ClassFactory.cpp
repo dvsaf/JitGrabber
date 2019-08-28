@@ -2,7 +2,7 @@
 #include "ClassFactory.h"
 #include "CorProfilerCallback.h"
 
-namespace JittedCodeDumpProfiler
+namespace JitGrabber
 {
     ULONG ClassFactory::m_scRef = 0;
 

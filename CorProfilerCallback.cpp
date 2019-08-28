@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CorProfilerCallback.h"
 
-namespace JittedCodeDumpProfiler
+namespace JitGrabber
 {
 
     ULONG CorProfilerCallback::m_scRef = 0;

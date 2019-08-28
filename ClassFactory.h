@@ -1,6 +1,6 @@
 #pragma once
 
-namespace JittedCodeDumpProfiler
+namespace JitGrabber
 {
 
     class ClassFactory :

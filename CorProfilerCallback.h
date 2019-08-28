@@ -1,5 +1,5 @@
 #pragma once
-namespace JittedCodeDumpProfiler
+namespace JitGrabber
 {
 
     class __declspec(uuid("7834A07A-BEC2-460C-9B72-481C162A7C70"))
