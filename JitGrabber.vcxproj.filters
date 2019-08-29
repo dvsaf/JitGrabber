@@ -21,32 +21,32 @@
     <ClInclude Include="JitGrabber\ClassFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="JitGrabber\ComDefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JitGrabber\CorDebugDefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JitGrabber\CorDefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JitGrabber\CorHeadersDefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JitGrabber\CorProfilerCallback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JitGrabber\CorProfilingDefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="JitGrabber\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="JitGrabber\WindowsDefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="JitGrabber\WindowsErrorsDefinitions.h">
-      <Filter>Header Files</Filter>
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JitGrabber\WindowsDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JitGrabber\CorProfilingDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JitGrabber\CorProfilerCallback.h">
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JitGrabber\CorHeadersDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JitGrabber\CorDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JitGrabber\ComDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JitGrabber\CorDebugDefinitions.h">
+      <Filter>WinAPI Replacement Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
