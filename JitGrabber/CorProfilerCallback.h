@@ -17,7 +17,7 @@ namespace JitGrabber
 
 		static ULONG AllRefCount()
 		{
-			scoped_lock(m_mutexRef);
+			scoped_lock lock(m_mutexRef);
 
 			return m_scRef;
 		}
@@ -30,7 +30,7 @@ namespace JitGrabber
 
 		virtual ULONG STDMETHODCALLTYPE AddRef()
 		{
-			scoped_lock(m_mutexRef);
+			scoped_lock lock(m_mutexRef);
 
 			++m_scRef;
 			return ++m_cRef;
@@ -38,7 +38,7 @@ namespace JitGrabber
 
 		virtual ULONG STDMETHODCALLTYPE Release()
 		{
-			scoped_lock(m_mutexRef);
+			scoped_lock lock(m_mutexRef);
 
 			--m_scRef;
 			--m_cRef;
@@ -294,7 +294,7 @@ namespace JitGrabber
 			/* [in] */ ThreadID threadId,
 			/* [in] */ ULONG cchName,
 			/* [annotation][in] */
-			_In_reads_opt_(cchName)  WCHAR name[]);
+			/* _In_reads_opt_(cchName) */  WCHAR name[]);
 
 		virtual HRESULT STDMETHODCALLTYPE GarbageCollectionStarted(
 			/* [in] */ int cGenerations,
@@ -348,7 +348,7 @@ namespace JitGrabber
 		ULONG m_cRef;         // Число ссылок на конкретный объект
 		static ULONG m_scRef; // Число ссылок на все объекты класса
 
-		mutex m_mutexRef;
+		static mutex m_mutexRef;
 
 		ICorProfilerInfo3* m_pCorProfilerInfo = nullptr;
 

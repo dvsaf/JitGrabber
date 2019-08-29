@@ -5,6 +5,7 @@ namespace JitGrabber
 {
 
     ULONG CorProfilerCallback::m_scRef = 0;
+    mutex CorProfilerCallback::m_mutexRef;
 
     wstring CorProfilerCallback::GetFunctionName(FunctionID funcID)
     {
@@ -71,7 +72,7 @@ namespace JitGrabber
 
     HRESULT STDMETHODCALLTYPE CorProfilerCallback::QueryInterface(
         /* [in] */ REFIID riid,
-        /* [iid_is][out] */ _COM_Outptr_ void **ppvObject)
+        /* [iid_is][out] */ /* _COM_Outptr_ */ void **ppvObject)
     {
         wcerr << L"[" __FUNCTIONW__ "]" << L" " << setw(8) << setfill(L'0') << hex << riid.Data1 << endl;
 
@@ -276,27 +277,27 @@ namespace JitGrabber
 
             wcerr << endl;
 
-            csh handle;
-            cs_insn *insn;
-            size_t count;
-
-            if (cs_open(CS_ARCH_X86, CS_MODE_64, &handle) != CS_ERR_OK)
-                continue;
-            count = cs_disasm(handle, (BYTE*)(codeInfos[i].startAddress), codeInfos[i].size, codeInfos[i].startAddress, 0, &insn);
-            if (count > 0)
-            {
-                size_t j;
-                for (j = 0; j < count; j++)
-                {
-                    wcerr << L"[" __FUNCTIONW__ "]" << L" " << setw(16) << setfill(L'0') << hex << insn[j].address << L": ";
-                    cerr << setw(16) << setiosflags(ios::left) << setfill(' ') << insn[j].mnemonic;
-                    cerr << insn[j].op_str << endl;
-                }
-                cs_free(insn, count);
-            }
-            else
-                continue;
-            cs_close(&handle);
+//            csh handle;
+//            cs_insn *insn;
+//            size_t count;
+//
+//            if (cs_open(CS_ARCH_X86, CS_MODE_64, &handle) != CS_ERR_OK)
+//                continue;
+//            count = cs_disasm(handle, (BYTE*)(codeInfos[i].startAddress), codeInfos[i].size, codeInfos[i].startAddress, 0, &insn);
+//            if (count > 0)
+//            {
+//                size_t j;
+//                for (j = 0; j < count; j++)
+//                {
+//                    wcerr << L"[" __FUNCTIONW__ "]" << L" " << setw(16) << setfill(L'0') << hex << insn[j].address << L": ";
+//                    cerr << setw(16) << setiosflags(ios::left) << setfill(' ') << insn[j].mnemonic;
+//                    cerr << insn[j].op_str << endl;
+//                }
+//                cs_free(insn, count);
+//            }
+//            else
+//                continue;
+//            cs_close(&handle);
         }
 
         return S_OK;
@@ -604,7 +605,7 @@ namespace JitGrabber
         /* [in] */ ThreadID threadId,
         /* [in] */ ULONG cchName,
         /* [annotation][in] */
-        _In_reads_opt_(cchName)  WCHAR name[])
+        /* _In_reads_opt_(cchName) */  WCHAR name[])
     {
         return E_NOTIMPL;
     }

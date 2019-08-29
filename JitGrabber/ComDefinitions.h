@@ -9,7 +9,7 @@ public:
 
 	virtual HRESULT STDMETHODCALLTYPE QueryInterface(
 		/* [in] */ REFIID riid,
-		/* [iid_is][out] */ _COM_Outptr_ void **ppvObject) = 0;
+		/* [iid_is][out] */ /* _COM_Outptr_ */ void **ppvObject) = 0;
 
 	virtual ULONG STDMETHODCALLTYPE AddRef(void) = 0;
 
@@ -26,11 +26,11 @@ public:
 
 	virtual HRESULT STDMETHODCALLTYPE CreateInstance(
 		/* [annotation][unique][in] */
-		_In_opt_  IUnknown * pUnkOuter,
+		/* _In_opt_ */  IUnknown * pUnkOuter,
 		/* [annotation][in] */
-		_In_  REFIID riid,
+		/* _In_ */ REFIID riid,
 		/* [annotation][iid_is][out] */
-		_COM_Outptr_  void** ppvObject) = 0;
+		/* _COM_Outptr_ */  void** ppvObject) = 0;
 
 	virtual HRESULT STDMETHODCALLTYPE LockServer(
 		/* [in] */ BOOL fLock) = 0;

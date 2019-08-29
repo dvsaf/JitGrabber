@@ -18,59 +18,56 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="JitGrabber\ClassFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="JitGrabber\ComDefinitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ClassFactory.h">
+    <ClInclude Include="JitGrabber\CorDebugDefinitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CorProfilerCallback.h">
+    <ClInclude Include="JitGrabber\CorDefinitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CorDefinitions.h">
-      <Filter>WinAPI Replacement Files</Filter>
+    <ClInclude Include="JitGrabber\CorHeadersDefinitions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CorProfilingDefinitions.h">
-      <Filter>WinAPI Replacement Files</Filter>
+    <ClInclude Include="JitGrabber\CorProfilerCallback.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CorHeadersDefinitions.h">
-      <Filter>WinAPI Replacement Files</Filter>
+    <ClInclude Include="JitGrabber\CorProfilingDefinitions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComDefinitions.h">
-      <Filter>WinAPI Replacement Files</Filter>
+    <ClInclude Include="JitGrabber\stdafx.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WindowsDefinitions.h">
-      <Filter>WinAPI Replacement Files</Filter>
+    <ClInclude Include="JitGrabber\WindowsDefinitions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CorDebugDefinitions.h">
-      <Filter>WinAPI Replacement Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowsErrorsDefinitions.h">
-      <Filter>WinAPI Replacement Files</Filter>
+    <ClInclude Include="JitGrabber\WindowsErrorsDefinitions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="JitGrabber\ClassFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dllmain.cpp">
+    <ClCompile Include="JitGrabber\CorProfilerCallback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ClassFactory.cpp">
+    <ClCompile Include="JitGrabber\dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CorProfilerCallback.cpp">
+    <ClCompile Include="JitGrabber\JitGrabber.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="JitGrabber.cpp">
+    <ClCompile Include="JitGrabber\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source.def">
+    <None Include="JitGrabber\Source.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

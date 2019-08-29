@@ -1,0 +1,355 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B9472CA8231709DF003B7A89 /* CorDebugDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C97231709DE003B7A89 /* CorDebugDefinitions.h */; };
+		B9472CA9231709DF003B7A89 /* ComDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C98231709DE003B7A89 /* ComDefinitions.h */; };
+		B9472CAA231709DF003B7A89 /* CorProfilerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9472C99231709DE003B7A89 /* CorProfilerCallback.cpp */; };
+		B9472CAB231709DF003B7A89 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C9A231709DE003B7A89 /* stdafx.h */; };
+		B9472CAC231709DF003B7A89 /* targetver.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C9B231709DE003B7A89 /* targetver.h */; };
+		B9472CAD231709DF003B7A89 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9472C9C231709DE003B7A89 /* stdafx.cpp */; };
+		B9472CAE231709DF003B7A89 /* CorProfilerCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C9D231709DE003B7A89 /* CorProfilerCallback.h */; };
+		B9472CAF231709DF003B7A89 /* ClassFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C9E231709DE003B7A89 /* ClassFactory.h */; };
+		B9472CB0231709DF003B7A89 /* WindowsDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C9F231709DE003B7A89 /* WindowsDefinitions.h */; };
+		B9472CB1231709DF003B7A89 /* dllmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9472CA0231709DE003B7A89 /* dllmain.cpp */; };
+		B9472CB2231709DF003B7A89 /* JitGrabber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9472CA1231709DE003B7A89 /* JitGrabber.cpp */; };
+		B9472CB3231709DF003B7A89 /* WindowsErrorsDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472CA2231709DE003B7A89 /* WindowsErrorsDefinitions.h */; };
+		B9472CB4231709DF003B7A89 /* CorProfilingDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472CA3231709DE003B7A89 /* CorProfilingDefinitions.h */; };
+		B9472CB5231709DF003B7A89 /* ClassFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9472CA4231709DE003B7A89 /* ClassFactory.cpp */; };
+		B9472CB6231709DF003B7A89 /* CorDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472CA6231709DF003B7A89 /* CorDefinitions.h */; };
+		B9472CB7231709DF003B7A89 /* CorHeadersDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472CA7231709DF003B7A89 /* CorHeadersDefinitions.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B9472C88231708D5003B7A89 /* libJitGrabber.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libJitGrabber.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9472C97231709DE003B7A89 /* CorDebugDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorDebugDefinitions.h; sourceTree = "<group>"; };
+		B9472C98231709DE003B7A89 /* ComDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComDefinitions.h; sourceTree = "<group>"; };
+		B9472C99231709DE003B7A89 /* CorProfilerCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CorProfilerCallback.cpp; sourceTree = "<group>"; };
+		B9472C9A231709DE003B7A89 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		B9472C9B231709DE003B7A89 /* targetver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = targetver.h; sourceTree = "<group>"; };
+		B9472C9C231709DE003B7A89 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
+		B9472C9D231709DE003B7A89 /* CorProfilerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorProfilerCallback.h; sourceTree = "<group>"; };
+		B9472C9E231709DE003B7A89 /* ClassFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassFactory.h; sourceTree = "<group>"; };
+		B9472C9F231709DE003B7A89 /* WindowsDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowsDefinitions.h; sourceTree = "<group>"; };
+		B9472CA0231709DE003B7A89 /* dllmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dllmain.cpp; sourceTree = "<group>"; };
+		B9472CA1231709DE003B7A89 /* JitGrabber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JitGrabber.cpp; sourceTree = "<group>"; };
+		B9472CA2231709DE003B7A89 /* WindowsErrorsDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowsErrorsDefinitions.h; sourceTree = "<group>"; };
+		B9472CA3231709DE003B7A89 /* CorProfilingDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorProfilingDefinitions.h; sourceTree = "<group>"; };
+		B9472CA4231709DE003B7A89 /* ClassFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassFactory.cpp; sourceTree = "<group>"; };
+		B9472CA5231709DE003B7A89 /* Source.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Source.def; sourceTree = "<group>"; };
+		B9472CA6231709DF003B7A89 /* CorDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorDefinitions.h; sourceTree = "<group>"; };
+		B9472CA7231709DF003B7A89 /* CorHeadersDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorHeadersDefinitions.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B9472C86231708D5003B7A89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B9472C7F231708D5003B7A89 = {
+			isa = PBXGroup;
+			children = (
+				B9472C8A231708D5003B7A89 /* JitGrabber */,
+				B9472C89231708D5003B7A89 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B9472C89231708D5003B7A89 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9472C88231708D5003B7A89 /* libJitGrabber.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B9472C8A231708D5003B7A89 /* JitGrabber */ = {
+			isa = PBXGroup;
+			children = (
+				B9472CA4231709DE003B7A89 /* ClassFactory.cpp */,
+				B9472C9E231709DE003B7A89 /* ClassFactory.h */,
+				B9472C98231709DE003B7A89 /* ComDefinitions.h */,
+				B9472C97231709DE003B7A89 /* CorDebugDefinitions.h */,
+				B9472CA6231709DF003B7A89 /* CorDefinitions.h */,
+				B9472CA7231709DF003B7A89 /* CorHeadersDefinitions.h */,
+				B9472C99231709DE003B7A89 /* CorProfilerCallback.cpp */,
+				B9472C9D231709DE003B7A89 /* CorProfilerCallback.h */,
+				B9472CA3231709DE003B7A89 /* CorProfilingDefinitions.h */,
+				B9472CA0231709DE003B7A89 /* dllmain.cpp */,
+				B9472CA1231709DE003B7A89 /* JitGrabber.cpp */,
+				B9472CA5231709DE003B7A89 /* Source.def */,
+				B9472C9C231709DE003B7A89 /* stdafx.cpp */,
+				B9472C9A231709DE003B7A89 /* stdafx.h */,
+				B9472C9B231709DE003B7A89 /* targetver.h */,
+				B9472C9F231709DE003B7A89 /* WindowsDefinitions.h */,
+				B9472CA2231709DE003B7A89 /* WindowsErrorsDefinitions.h */,
+			);
+			path = JitGrabber;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B9472C84231708D5003B7A89 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9472CB6231709DF003B7A89 /* CorDefinitions.h in Headers */,
+				B9472CAF231709DF003B7A89 /* ClassFactory.h in Headers */,
+				B9472CB7231709DF003B7A89 /* CorHeadersDefinitions.h in Headers */,
+				B9472CAB231709DF003B7A89 /* stdafx.h in Headers */,
+				B9472CAC231709DF003B7A89 /* targetver.h in Headers */,
+				B9472CA8231709DF003B7A89 /* CorDebugDefinitions.h in Headers */,
+				B9472CB3231709DF003B7A89 /* WindowsErrorsDefinitions.h in Headers */,
+				B9472CA9231709DF003B7A89 /* ComDefinitions.h in Headers */,
+				B9472CAE231709DF003B7A89 /* CorProfilerCallback.h in Headers */,
+				B9472CB4231709DF003B7A89 /* CorProfilingDefinitions.h in Headers */,
+				B9472CB0231709DF003B7A89 /* WindowsDefinitions.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B9472C87231708D5003B7A89 /* JitGrabber */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9472C93231708D5003B7A89 /* Build configuration list for PBXNativeTarget "JitGrabber" */;
+			buildPhases = (
+				B9472C84231708D5003B7A89 /* Headers */,
+				B9472C85231708D5003B7A89 /* Sources */,
+				B9472C86231708D5003B7A89 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JitGrabber;
+			productName = JitGrabber;
+			productReference = B9472C88231708D5003B7A89 /* libJitGrabber.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B9472C80231708D5003B7A89 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = "Dmitriy Safronov";
+				TargetAttributes = {
+					B9472C87231708D5003B7A89 = {
+						CreatedOnToolsVersion = 10.3;
+					};
+				};
+			};
+			buildConfigurationList = B9472C83231708D5003B7A89 /* Build configuration list for PBXProject "JitGrabber" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B9472C7F231708D5003B7A89;
+			productRefGroup = B9472C89231708D5003B7A89 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B9472C87231708D5003B7A89 /* JitGrabber */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B9472C85231708D5003B7A89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9472CAA231709DF003B7A89 /* CorProfilerCallback.cpp in Sources */,
+				B9472CAD231709DF003B7A89 /* stdafx.cpp in Sources */,
+				B9472CB1231709DF003B7A89 /* dllmain.cpp in Sources */,
+				B9472CB2231709DF003B7A89 /* JitGrabber.cpp in Sources */,
+				B9472CB5231709DF003B7A89 /* ClassFactory.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B9472C91231708D5003B7A89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B9472C92231708D5003B7A89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B9472C94231708D5003B7A89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B9472C95231708D5003B7A89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B9472C83231708D5003B7A89 /* Build configuration list for PBXProject "JitGrabber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9472C91231708D5003B7A89 /* Debug */,
+				B9472C92231708D5003B7A89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9472C93231708D5003B7A89 /* Build configuration list for PBXNativeTarget "JitGrabber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9472C94231708D5003B7A89 /* Debug */,
+				B9472C95231708D5003B7A89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B9472C80231708D5003B7A89 /* Project object */;
+}
