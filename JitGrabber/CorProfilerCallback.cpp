@@ -19,14 +19,14 @@ namespace JitGrabber
         mdToken token;
         if (FAILED(m_pCorProfilerInfo->GetFunctionInfo(funcID, &classId, &moduleId, &token)))
         {
-            wcerr << L"[" __FUNCTIONW__ "]" << L" FAILED(m_pCorProfilerInfo->GetFunctionInfo())" << endl;
+            wcerr << L"[CorProfilerCallback::GetFunctionName]" << L" FAILED(m_pCorProfilerInfo->GetFunctionInfo())" << endl;
             return (wstringstream() << L"<func_" << funcID << L">").str();
         }
 
         IMetaDataImport* pMetaDataImport;
         if (FAILED(m_pCorProfilerInfo->GetModuleMetaData(moduleId, ofRead, IID_IMetaDataImport, (IUnknown**)&pMetaDataImport)))
         {
-            wcerr << L"[" __FUNCTIONW__ "]" << L" FAILED(m_pCorProfilerInfo->GetModuleMetaData())" << endl;
+            wcerr << L"[CorProfilerCallback::GetFunctionName]" << L" FAILED(m_pCorProfilerInfo->GetModuleMetaData())" << endl;
             return (wstringstream() << L"<func_" << funcID << L">").str();
         }
 
@@ -51,7 +51,7 @@ namespace JitGrabber
             }
             else
             {
-                wcerr << L"[" __FUNCTIONW__ "]" << L" FAILED(pMetaDataImport->GetTypeDefProps())" << endl;
+                wcerr << L"[CorProfilerCallback::GetFunctionName]" << L" FAILED(pMetaDataImport->GetTypeDefProps())" << endl;
                 return (wstringstream() << L"<func_" << funcID << L">").str();
             }
 
@@ -59,7 +59,7 @@ namespace JitGrabber
         }
         else
         {
-            wcerr << L"[" __FUNCTIONW__ "]" << L" FAILED(pMetaDataImport->GetMethodProps())" << endl;
+            wcerr << L"[CorProfilerCallback::GetFunctionName]" << L" FAILED(pMetaDataImport->GetMethodProps())" << endl;
             return (wstringstream() << L"<func_" << funcID << L">").str();
         }
 
@@ -74,7 +74,7 @@ namespace JitGrabber
         /* [in] */ REFIID riid,
         /* [iid_is][out] */ /* _COM_Outptr_ */ void **ppvObject)
     {
-        wcerr << L"[" __FUNCTIONW__ "]" << L" " << setw(8) << setfill(L'0') << hex << riid.Data1 << endl;
+        wcerr << L"[CorProfilerCallback::QueryInterface]" << L" " << setw(8) << setfill(L'0') << hex << riid.Data1 << endl;
 
         HRESULT     hr;
 
@@ -110,13 +110,13 @@ namespace JitGrabber
     HRESULT STDMETHODCALLTYPE CorProfilerCallback::Initialize(
         /* [in] */ IUnknown *pICorProfilerInfoUnk)
     {
-        wcerr << L"[" __FUNCTIONW__ "]" << endl;
+        wcerr << L"[CorProfilerCallback::Initialize]" << endl;
 
         pICorProfilerInfoUnk->QueryInterface(IID_ICorProfilerInfo3, (void**)&m_pCorProfilerInfo);
 
         if (FAILED(m_pCorProfilerInfo->SetEventMask(COR_PRF_MONITOR_JIT_COMPILATION)))
         {
-            wcerr << L"[" __FUNCTIONW__ "]" << L" FAILED(m_pCorProfilerInfo->SetEventMask())" << endl;
+            wcerr << L"[CorProfilerCallback::Initialize]" << L" FAILED(m_pCorProfilerInfo->SetEventMask())" << endl;
             return E_FAIL;
         }
 
@@ -125,7 +125,7 @@ namespace JitGrabber
 
     HRESULT STDMETHODCALLTYPE CorProfilerCallback::Shutdown(void)
     {
-        wcerr << L"[" __FUNCTIONW__ "]" << endl;
+        wcerr << L"[CorProfilerCallback::Shutdown]" << endl;
 
         m_pCorProfilerInfo->Release();
 
@@ -261,7 +261,7 @@ namespace JitGrabber
         /* [in] */ HRESULT hrStatus,
         /* [in] */ BOOL fIsSafeToBlock)
     {
-        wcerr << L"[" __FUNCTIONW__ "]" << L" " << GetFunctionName(functionId) << endl;
+        wcerr << L"1[CorProfilerCallback::JITCompilationFinished]" << L" " << GetFunctionName(functionId) << endl;
 
         COR_PRF_CODE_INFO codeInfos[512];
         ULONG32 cCodeInfos = 0;
@@ -269,7 +269,7 @@ namespace JitGrabber
 
         for (ULONG32 i = 0; i < cCodeInfos; i++)
         {
-            wcerr << L"[" __FUNCTIONW__ "]" << L" codeInfo #" << i << " address=" << setw(16) << setfill(L'0') << hex
+            wcerr << L"2[CorProfilerCallback::JITCompilationFinished]" << L" codeInfo #" << i << " address=" << setw(16) << setfill(L'0') << hex
                 << codeInfos[i].startAddress << L" size=" << codeInfos[i].size << L" code: ";
 
             for (size_t j = 0; j < codeInfos[i].size; j++)
@@ -277,27 +277,27 @@ namespace JitGrabber
 
             wcerr << endl;
 
-//            csh handle;
-//            cs_insn *insn;
-//            size_t count;
-//
-//            if (cs_open(CS_ARCH_X86, CS_MODE_64, &handle) != CS_ERR_OK)
-//                continue;
-//            count = cs_disasm(handle, (BYTE*)(codeInfos[i].startAddress), codeInfos[i].size, codeInfos[i].startAddress, 0, &insn);
-//            if (count > 0)
-//            {
-//                size_t j;
-//                for (j = 0; j < count; j++)
-//                {
-//                    wcerr << L"[" __FUNCTIONW__ "]" << L" " << setw(16) << setfill(L'0') << hex << insn[j].address << L": ";
-//                    cerr << setw(16) << setiosflags(ios::left) << setfill(' ') << insn[j].mnemonic;
-//                    cerr << insn[j].op_str << endl;
-//                }
-//                cs_free(insn, count);
-//            }
-//            else
-//                continue;
-//            cs_close(&handle);
+            csh handle;
+            cs_insn *insn;
+            size_t count;
+
+            if (cs_open(CS_ARCH_X86, CS_MODE_64, &handle) != CS_ERR_OK)
+                continue;
+            count = cs_disasm(handle, (BYTE*)(codeInfos[i].startAddress), codeInfos[i].size, codeInfos[i].startAddress, 0, &insn);
+            if (count > 0)
+            {
+                size_t j;
+                for (j = 0; j < count; j++)
+                {
+                    wcerr << L"3[CorProfilerCallback::JITCompilationFinished]" << L" " << setw(16) << setfill(L'0') << hex << insn[j].address << L": ";
+                    cerr << setw(16) << setiosflags(ios::left) << setfill(' ') << insn[j].mnemonic;
+                    cerr << insn[j].op_str << endl;
+                }
+                cs_free(insn, count);
+            }
+            else
+                continue;
+            cs_close(&handle);
         }
 
         return S_OK;

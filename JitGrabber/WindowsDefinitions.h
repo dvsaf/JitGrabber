@@ -6,8 +6,8 @@
 typedef uint32_t ULONG32;
 
 typedef unsigned short USHORT;
-typedef unsigned long ULONG;
-typedef unsigned long       DWORD;
+typedef uint32_t ULONG;
+typedef uint32_t     DWORD;
 typedef int                 BOOL;
 typedef unsigned char       BYTE;
 //typedef unsigned short      WORD;
@@ -46,7 +46,7 @@ typedef const BYTE* LPCBYTE;
 typedef void* HANDLE;
 
 struct GUID {
-	unsigned long  Data1;
+	unsigned int  Data1;
 	unsigned short Data2;
 	unsigned short Data3;
 	unsigned char  Data4[8];
@@ -60,11 +60,18 @@ typedef GUID CLSID;
 
 inline int IsEqualGUID(REFGUID rguid1, REFGUID rguid2)
 {
-	return (
-		((unsigned long*)& rguid1)[0] == ((unsigned long*)& rguid2)[0] &&
-		((unsigned long*)& rguid1)[1] == ((unsigned long*)& rguid2)[1] &&
-		((unsigned long*)& rguid1)[2] == ((unsigned long*)& rguid2)[2] &&
-		((unsigned long*)& rguid1)[3] == ((unsigned long*)& rguid2)[3]);
+	return
+		rguid1.Data1 == rguid2.Data1 &&
+		rguid1.Data2 == rguid2.Data2 &&
+		rguid1.Data3 == rguid2.Data3 &&
+            rguid1.Data4[0] == rguid2.Data4[0] &&
+            rguid1.Data4[1] == rguid2.Data4[1] &&
+            rguid1.Data4[2] == rguid2.Data4[2] &&
+            rguid1.Data4[3] == rguid2.Data4[3] &&
+            rguid1.Data4[4] == rguid2.Data4[4] &&
+            rguid1.Data4[5] == rguid2.Data4[5] &&
+            rguid1.Data4[6] == rguid2.Data4[6] &&
+            rguid1.Data4[7] == rguid2.Data4[7];
 }
 
 inline bool operator==(REFGUID guidOne, REFGUID guidOther)
@@ -77,7 +84,7 @@ inline bool operator!=(REFGUID guidOne, REFGUID guidOther)
 	return !(guidOne == guidOther);
 }
 
-typedef long HRESULT;
+typedef uint32_t HRESULT;
 
 // Разделить на 32/64
 #define STDMETHODCALLTYPE 

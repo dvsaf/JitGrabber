@@ -44,6 +44,6 @@ using std::wstringstream;
 using std::mutex;
 using std::scoped_lock;
 
-//#include <capstone/capstone.h>
+#include "capstone/capstone.h"
 
 #define __FUNCTIONW__ ""

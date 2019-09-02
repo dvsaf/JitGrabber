@@ -20,7 +20,7 @@ namespace JitGrabber
         REFIID      riid,
         void        **ppvObject)
     {
-        wcerr << L"[" __FUNCTIONW__ "]" << endl;
+        wcerr << L"[ClassFactory::QueryInterface]" << endl;
 
         HRESULT     hr;
 
@@ -55,7 +55,7 @@ namespace JitGrabber
         REFIID      riid,
         void        **ppvObject)
     {
-        wcerr << L"[" __FUNCTIONW__ "]" << endl;
+        wcerr << L"[ClassFactory::CreateInstance]" << endl;
 
         HRESULT     hr = E_FAIL;
 
@@ -86,7 +86,7 @@ namespace JitGrabber
         ClassFactory::LockServer(
             BOOL fLock)
     {
-        wcerr << L"[" __FUNCTIONW__ "]" << endl;
+        wcerr << L"[ClassFactory::LockServer]" << endl;
 
         // @FUTURE: Should we return E_NOTIMPL instead of S_OK?
         return S_OK;
