@@ -33,9 +33,6 @@
     <ClInclude Include="JitGrabber\CorProfilingDefinitions.h">
       <Filter>WinAPI Replacement Files</Filter>
     </ClInclude>
-    <ClInclude Include="JitGrabber\CorProfilerCallback.h">
-      <Filter>WinAPI Replacement Files</Filter>
-    </ClInclude>
     <ClInclude Include="JitGrabber\CorHeadersDefinitions.h">
       <Filter>WinAPI Replacement Files</Filter>
     </ClInclude>
@@ -47,6 +44,9 @@
     </ClInclude>
     <ClInclude Include="JitGrabber\CorDebugDefinitions.h">
       <Filter>WinAPI Replacement Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JitGrabber\CorProfilerCallback.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
