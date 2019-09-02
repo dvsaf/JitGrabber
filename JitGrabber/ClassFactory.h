@@ -9,10 +9,17 @@ namespace JitGrabber
 
     public:
 
-		static ClassFactory SingleObject()
+		ClassFactory()
 		{
-			return m_sSingleObject;
+
 		}
+
+		virtual ~ClassFactory() { }
+
+		//static ClassFactory SingleObject()
+		//{
+		//	return m_sSingleObject;
+		//}
 
         //
         // IUnknown methods.
@@ -24,13 +31,27 @@ namespace JitGrabber
 
 		virtual ULONG STDMETHODCALLTYPE AddRef()
 		{
-			return 1;
+			scoped_lock lock(m_mutexRef);
+
+			++m_scRef;
+			return ++m_cRef;
 		}
 
         virtual ULONG STDMETHODCALLTYPE Release()
         {
-			return 1;
-        }
+			scoped_lock lock(m_mutexRef);
+
+			--m_scRef;
+			--m_cRef;
+
+			if (m_cRef == 0)
+			{
+				delete this;
+				return 0;
+			}
+			else
+				return m_cRef;
+		}
 
 
         //
@@ -47,7 +68,12 @@ namespace JitGrabber
 
     private:
 
-		static ClassFactory m_sSingleObject;
+		ULONG m_cRef;         // Число ссылок на конкретный объект
+		static ULONG m_scRef; // Число ссылок на все объекты класса
+
+		static mutex m_mutexRef;
+
+		//static ClassFactory m_sSingleObject;
 
 	};
 

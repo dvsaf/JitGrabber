@@ -261,7 +261,7 @@ namespace JitGrabber
         /* [in] */ HRESULT hrStatus,
         /* [in] */ BOOL fIsSafeToBlock)
     {
-        wcerr << L"1[CorProfilerCallback::JITCompilationFinished]" << L" " << GetFunctionName(functionId) << endl;
+        //wcerr << L"1[CorProfilerCallback::JITCompilationFinished]" << L" " << GetFunctionName(functionId) << endl;
 
         COR_PRF_CODE_INFO codeInfos[512];
         ULONG32 cCodeInfos = 0;

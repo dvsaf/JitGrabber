@@ -28,8 +28,15 @@ extern "C" HRESULT __stdcall DllGetClassObject(/* _In_ */ REFCLSID rclsid, /* _I
     if (rclsid == CLSID_CorProfilerCallback)
     {
         wcerr << L" equal" << endl;
-        return ClassFactory::SingleObject().QueryInterface(riid, ppv);
-    }
+		ClassFactory* pClassFactory = new ClassFactory();
+		if (pClassFactory == 0)
+			return E_OUTOFMEMORY;
+
+		HRESULT hr = pClassFactory->QueryInterface(riid, ppv);
+		if (FAILED(hr))
+			delete pClassFactory;
+		return hr;
+	}
     else
         return CLASS_E_CLASSNOTAVAILABLE;
 }
