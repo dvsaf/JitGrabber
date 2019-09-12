@@ -7,64 +7,58 @@ namespace JitGrabber
     ULONG CorProfilerCallback::m_scRef = 0;
     mutex CorProfilerCallback::m_mutexRef;
 
-    wstring CorProfilerCallback::GetFunctionName(FunctionID funcID)
+    string CorProfilerCallback::GetFunctionName(FunctionID funcID)
     {
-        //auto it = g_funcNames.find(funcID);
-        //if (it != g_funcNames.end())
-        //    return (*it).second;
+        string sGeneratedName = (stringstream() << "<func_" << funcID << ">").str();
+        
+        HRESULT hr;
 
-        wstring sResult;
         ClassID classId;
         ModuleID moduleId;
         mdToken token;
-        if (FAILED(m_pCorProfilerInfo->GetFunctionInfo(funcID, &classId, &moduleId, &token)))
-        {
-            wcerr << L"[CorProfilerCallback::GetFunctionName]" << L" FAILED(m_pCorProfilerInfo->GetFunctionInfo())" << endl;
-            return (wstringstream() << L"<func_" << funcID << L">").str();
-        }
-
+        hr = m_pCorProfilerInfo->GetFunctionInfo(funcID, &classId, &moduleId, &token);
+        if (FAILED(hr))
+            return sGeneratedName;
+        
         IMetaDataImport* pMetaDataImport;
-        if (FAILED(m_pCorProfilerInfo->GetModuleMetaData(moduleId, ofRead, IID_IMetaDataImport, (IUnknown**)&pMetaDataImport)))
-        {
-            wcerr << L"[CorProfilerCallback::GetFunctionName]" << L" FAILED(m_pCorProfilerInfo->GetModuleMetaData())" << endl;
-            return (wstringstream() << L"<func_" << funcID << L">").str();
-        }
-
-		mdTypeDef tokenClass;
-        WCHAR szMethodName[4096];
+        hr = m_pCorProfilerInfo->GetModuleMetaData(moduleId, ofRead, IID_IMetaDataImport, (IUnknown**)&pMetaDataImport);
+        if (FAILED(hr))
+            return sGeneratedName;
+        
+        mdTypeDef tokenClass;
         ULONG chMethod;
         DWORD dwAttr;
         PCCOR_SIGNATURE pvSigBlob;
         ULONG cbSigBlob;
         ULONG ulCodeRVA;
         DWORD dwImplFlags;
-		if (SUCCEEDED(pMetaDataImport->GetMethodProps(token, &tokenClass, szMethodName, 4096, &chMethod, &dwAttr, &pvSigBlob, &cbSigBlob, &ulCodeRVA, &dwImplFlags)))
-        {
-            WCHAR szName[4096];
-            ULONG chTypeDef;
-            DWORD dwTypeDefFlags;
-            mdToken tkExtends;
-            if (SUCCEEDED(pMetaDataImport->GetTypeDefProps(tokenClass, szName, 4096, &chTypeDef, &dwTypeDefFlags, &tkExtends)))
-            {
-                sResult = szName;
-                sResult += L".";
-            }
-            else
-            {
-                wcerr << L"[CorProfilerCallback::GetFunctionName]" << L" FAILED(pMetaDataImport->GetTypeDefProps())" << endl;
-                return (wstringstream() << L"<func_" << funcID << L">").str();
-            }
-
-            sResult += szMethodName;
-        }
-        else
-        {
-            wcerr << L"[CorProfilerCallback::GetFunctionName]" << L" FAILED(pMetaDataImport->GetMethodProps())" << endl;
-            return (wstringstream() << L"<func_" << funcID << L">").str();
-        }
-
-        //g_funcNames[funcID] = sResult;
-        return sResult;
+        hr = pMetaDataImport->GetMethodProps(token, &tokenClass, nullptr, 0, &chMethod, &dwAttr, &pvSigBlob, &cbSigBlob, &ulCodeRVA, &dwImplFlags);
+        if (FAILED(hr))
+            return sGeneratedName;
+        
+        vector<WCHAR> szMethodName(chMethod);
+        hr = pMetaDataImport->GetMethodProps(token, &tokenClass, szMethodName.data(), chMethod, &chMethod, &dwAttr, &pvSigBlob, &cbSigBlob, &ulCodeRVA, &dwImplFlags);
+        if (FAILED(hr))
+            return sGeneratedName;
+        
+        wstring_convert<codecvt_utf8_utf16<char16_t>, char16_t> conversion;
+        string sMethodName = conversion.to_bytes(szMethodName.data());
+        
+        ULONG chTypeDef;
+        DWORD dwTypeDefFlags;
+        mdToken tkExtends;
+        hr = pMetaDataImport->GetTypeDefProps(tokenClass, nullptr, 0, &chTypeDef, &dwTypeDefFlags, &tkExtends);
+        if (FAILED(hr))
+            return sGeneratedName;
+        
+        vector<WCHAR> szTypeDef(chTypeDef);
+        hr = pMetaDataImport->GetTypeDefProps(tokenClass, szTypeDef.data(), chTypeDef, &chTypeDef, &dwTypeDefFlags, &tkExtends);
+        if (FAILED(hr))
+            return sGeneratedName;
+        
+        string sTypeDef = conversion.to_bytes(szTypeDef.data());
+        
+        return sTypeDef + "::" + sMethodName;
     }
 
 
@@ -74,8 +68,6 @@ namespace JitGrabber
         /* [in] */ REFIID riid,
         /* [iid_is][out] */ /* _COM_Outptr_ */ void **ppvObject)
     {
-        wcerr << L"[CorProfilerCallback::QueryInterface]" << L" " << setw(8) << setfill(L'0') << hex << riid.Data1 << endl;
-
         HRESULT     hr;
 
         // Avoid confusion.
@@ -110,23 +102,16 @@ namespace JitGrabber
     HRESULT STDMETHODCALLTYPE CorProfilerCallback::Initialize(
         /* [in] */ IUnknown *pICorProfilerInfoUnk)
     {
-        wcerr << L"[CorProfilerCallback::Initialize]" << endl;
-
         pICorProfilerInfoUnk->QueryInterface(IID_ICorProfilerInfo3, (void**)&m_pCorProfilerInfo);
 
         if (FAILED(m_pCorProfilerInfo->SetEventMask(COR_PRF_MONITOR_JIT_COMPILATION)))
-        {
-            wcerr << L"[CorProfilerCallback::Initialize]" << L" FAILED(m_pCorProfilerInfo->SetEventMask())" << endl;
             return E_FAIL;
-        }
 
         return S_OK;
     }
 
     HRESULT STDMETHODCALLTYPE CorProfilerCallback::Shutdown(void)
     {
-        wcerr << L"[CorProfilerCallback::Shutdown]" << endl;
-
         m_pCorProfilerInfo->Release();
 
         return S_OK;
@@ -261,7 +246,7 @@ namespace JitGrabber
         /* [in] */ HRESULT hrStatus,
         /* [in] */ BOOL fIsSafeToBlock)
     {
-        //wcerr << L"1[CorProfilerCallback::JITCompilationFinished]" << L" " << GetFunctionName(functionId) << endl;
+        cout << GetFunctionName(functionId) << endl;
 
         COR_PRF_CODE_INFO codeInfos[512];
         ULONG32 cCodeInfos = 0;
@@ -269,13 +254,13 @@ namespace JitGrabber
 
         for (ULONG32 i = 0; i < cCodeInfos; i++)
         {
-            wcerr << L"2[CorProfilerCallback::JITCompilationFinished]" << L" codeInfo #" << i << " address=" << setw(16) << setfill(L'0') << hex
-                << codeInfos[i].startAddress << L" size=" << codeInfos[i].size << L" code: ";
+            cout << "codeInfo #" << i << " address=" << setw(16) << setfill('0') << hex
+                << codeInfos[i].startAddress << " size=" << codeInfos[i].size << " code: ";
 
             for (size_t j = 0; j < codeInfos[i].size; j++)
-                wcerr << setw(2) << setfill(L'0') << hex << *(BYTE*)(codeInfos[i].startAddress + j) << L" ";
+                cout << setw(2) << setfill('0') << hex << (int)*(uint8_t*)(codeInfos[i].startAddress + j) << " ";
 
-            wcerr << endl;
+            cout << endl;
 
             csh handle;
             cs_insn *insn;
@@ -289,14 +274,15 @@ namespace JitGrabber
                 size_t j;
                 for (j = 0; j < count; j++)
                 {
-                    wcerr << L"3[CorProfilerCallback::JITCompilationFinished]" << L" " << setw(16) << setfill(L'0') << hex << insn[j].address << L": ";
-                    cerr << setw(16) << setiosflags(ios::left) << setfill(' ') << insn[j].mnemonic;
-                    cerr << insn[j].op_str << endl;
+                    cout << setw(16) << setfill('0') << hex << insn[j].address << ": ";
+                    cout << setw(16) << setiosflags(ios::left) << setfill(' ') << insn[j].mnemonic;
+                    cout << insn[j].op_str << endl;
                 }
                 cs_free(insn, count);
             }
             else
                 continue;
+            
             cs_close(&handle);
         }
 

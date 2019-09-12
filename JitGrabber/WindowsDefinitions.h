@@ -34,7 +34,7 @@ typedef unsigned int        UINT;
 typedef uintptr_t UINT_PTR;
 typedef size_t SIZE_T;
 
-typedef wchar_t WCHAR;
+typedef char16_t WCHAR;
 typedef WCHAR* NWPSTR, * LPWSTR, * PWSTR;
 typedef const WCHAR* LPCWSTR, * PCWSTR;
 

@@ -7,8 +7,6 @@ namespace JitGrabber
 	ULONG ClassFactory::m_scRef = 0;
 	mutex ClassFactory::m_mutexRef;
 
-	//ClassFactory ClassFactory::m_sSingleObject;
-
     //*****************************************************************************
     //
     //********** Class factory code.
@@ -23,12 +21,10 @@ namespace JitGrabber
         REFIID      riid,
         void        **ppvObject)
     {
-        wcerr << L"[ClassFactory::QueryInterface]" << endl;
-
         HRESULT     hr;
 
         // Avoid confusion.
-        *ppvObject = NULL;
+        *ppvObject = nullptr;
 
         // Pick the right v-table based on the IID passed in.
         if (riid == IID_IUnknown)
@@ -44,6 +40,7 @@ namespace JitGrabber
         }
         else
             hr = E_NOINTERFACE;
+        
         return hr;
     }
 
@@ -58,8 +55,6 @@ namespace JitGrabber
         REFIID      riid,
         void        **ppvObject)
     {
-        wcerr << L"[ClassFactory::CreateInstance]" << endl;
-
         HRESULT     hr = E_FAIL;
 
         // Avoid confusion.
@@ -77,20 +72,12 @@ namespace JitGrabber
         if (FAILED(hr))
             delete pCorProfilerCallback;
         return hr;
-
-        //    // Ask the object to create an instance of itself, and check the iid.
-        //    hr = (*m_pCoClass->pfnCreateObject)(riid, ppvObject);
-
-
-        return hr;
     }
 
     HRESULT STDMETHODCALLTYPE
         ClassFactory::LockServer(
             BOOL fLock)
     {
-        wcerr << L"[ClassFactory::LockServer]" << endl;
-
         // @FUTURE: Should we return E_NOTIMPL instead of S_OK?
         return S_OK;
     }

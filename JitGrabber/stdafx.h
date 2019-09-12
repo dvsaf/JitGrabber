@@ -5,13 +5,6 @@
 
 #pragma once
 
-//#include "targetver.h"
-
-//#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
-// Windows Header Files
-//#include <windows.h>
-
-
 #include "WindowsDefinitions.h"
 #include "WindowsErrorsDefinitions.h"
 
@@ -23,8 +16,7 @@
 #include "CorProfilingDefinitions.h"
 
 #include <iostream>
-using std::cerr;
-using std::wcerr;
+using std::cout;
 using std::endl;
 using std::hex;
 using std::ios;
@@ -35,15 +27,21 @@ using std::setw;
 using std::setiosflags;
 
 #include <string>
+using std::string;
 using std::wstring;
 
+#include <codecvt>
+using std::wstring_convert;
+using std::codecvt_utf8_utf16;
+
 #include <sstream>
-using std::wstringstream;
+using std::stringstream;
+
+#include <vector>
+using std::vector;
 
 #include <mutex>
 using std::mutex;
 using std::scoped_lock;
 
 #include "capstone/capstone.h"
-
-#define __FUNCTIONW__ ""

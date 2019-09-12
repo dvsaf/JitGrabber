@@ -16,11 +16,6 @@ namespace JitGrabber
 
 		virtual ~ClassFactory() { }
 
-		//static ClassFactory SingleObject()
-		//{
-		//	return m_sSingleObject;
-		//}
-
         //
         // IUnknown methods.
         //
@@ -68,12 +63,10 @@ namespace JitGrabber
 
     private:
 
-		ULONG m_cRef;         // Число ссылок на конкретный объект
-		static ULONG m_scRef; // Число ссылок на все объекты класса
+		ULONG m_cRef;
+		static ULONG m_scRef;
 
 		static mutex m_mutexRef;
-
-		//static ClassFactory m_sSingleObject;
 
 	};
 

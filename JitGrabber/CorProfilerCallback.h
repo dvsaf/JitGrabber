@@ -343,7 +343,7 @@ namespace JitGrabber
 
 	private:
 
-		wstring GetFunctionName(FunctionID funcID);
+		string GetFunctionName(FunctionID funcID);
 
 		ULONG m_cRef;         // Число ссылок на конкретный объект
 		static ULONG m_scRef; // Число ссылок на все объекты класса

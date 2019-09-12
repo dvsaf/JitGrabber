@@ -11,7 +11,6 @@
 		B9472CA9231709DF003B7A89 /* ComDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C98231709DE003B7A89 /* ComDefinitions.h */; };
 		B9472CAA231709DF003B7A89 /* CorProfilerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9472C99231709DE003B7A89 /* CorProfilerCallback.cpp */; };
 		B9472CAB231709DF003B7A89 /* stdafx.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C9A231709DE003B7A89 /* stdafx.h */; };
-		B9472CAC231709DF003B7A89 /* targetver.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C9B231709DE003B7A89 /* targetver.h */; };
 		B9472CAD231709DF003B7A89 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9472C9C231709DE003B7A89 /* stdafx.cpp */; };
 		B9472CAE231709DF003B7A89 /* CorProfilerCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C9D231709DE003B7A89 /* CorProfilerCallback.h */; };
 		B9472CAF231709DF003B7A89 /* ClassFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472C9E231709DE003B7A89 /* ClassFactory.h */; };
@@ -23,6 +22,7 @@
 		B9472CB5231709DF003B7A89 /* ClassFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9472CA4231709DE003B7A89 /* ClassFactory.cpp */; };
 		B9472CB6231709DF003B7A89 /* CorDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472CA6231709DF003B7A89 /* CorDefinitions.h */; };
 		B9472CB7231709DF003B7A89 /* CorHeadersDefinitions.h in Headers */ = {isa = PBXBuildFile; fileRef = B9472CA7231709DF003B7A89 /* CorHeadersDefinitions.h */; };
+		B9472CBC231A8778003B7A89 /* libcapstone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9472CBB231A8778003B7A89 /* libcapstone.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,6 @@
 		B9472C98231709DE003B7A89 /* ComDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComDefinitions.h; sourceTree = "<group>"; };
 		B9472C99231709DE003B7A89 /* CorProfilerCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CorProfilerCallback.cpp; sourceTree = "<group>"; };
 		B9472C9A231709DE003B7A89 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
-		B9472C9B231709DE003B7A89 /* targetver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = targetver.h; sourceTree = "<group>"; };
 		B9472C9C231709DE003B7A89 /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
 		B9472C9D231709DE003B7A89 /* CorProfilerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorProfilerCallback.h; sourceTree = "<group>"; };
 		B9472C9E231709DE003B7A89 /* ClassFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassFactory.h; sourceTree = "<group>"; };
@@ -44,6 +43,8 @@
 		B9472CA5231709DE003B7A89 /* Source.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Source.def; sourceTree = "<group>"; };
 		B9472CA6231709DF003B7A89 /* CorDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorDefinitions.h; sourceTree = "<group>"; };
 		B9472CA7231709DF003B7A89 /* CorHeadersDefinitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorHeadersDefinitions.h; sourceTree = "<group>"; };
+		B9472CB9231A874A003B7A89 /* System */ = {isa = PBXFileReference; lastKnownFileType = folder; name = System; path = ../../../../System; sourceTree = "<group>"; };
+		B9472CBB231A8778003B7A89 /* libcapstone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcapstone.a; path = ../../../../usr/local/Cellar/capstone/4.0.1/lib/libcapstone.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9472CBC231A8778003B7A89 /* libcapstone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +64,7 @@
 			children = (
 				B9472C8A231708D5003B7A89 /* JitGrabber */,
 				B9472C89231708D5003B7A89 /* Products */,
+				B9472CB8231A874A003B7A89 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,11 +93,19 @@
 				B9472CA5231709DE003B7A89 /* Source.def */,
 				B9472C9C231709DE003B7A89 /* stdafx.cpp */,
 				B9472C9A231709DE003B7A89 /* stdafx.h */,
-				B9472C9B231709DE003B7A89 /* targetver.h */,
 				B9472C9F231709DE003B7A89 /* WindowsDefinitions.h */,
 				B9472CA2231709DE003B7A89 /* WindowsErrorsDefinitions.h */,
 			);
 			path = JitGrabber;
+			sourceTree = "<group>";
+		};
+		B9472CB8231A874A003B7A89 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B9472CBB231A8778003B7A89 /* libcapstone.a */,
+				B9472CB9231A874A003B7A89 /* System */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,7 +119,6 @@
 				B9472CAF231709DF003B7A89 /* ClassFactory.h in Headers */,
 				B9472CB7231709DF003B7A89 /* CorHeadersDefinitions.h in Headers */,
 				B9472CAB231709DF003B7A89 /* stdafx.h in Headers */,
-				B9472CAC231709DF003B7A89 /* targetver.h in Headers */,
 				B9472CA8231709DF003B7A89 /* CorDebugDefinitions.h in Headers */,
 				B9472CB3231709DF003B7A89 /* WindowsErrorsDefinitions.h in Headers */,
 				B9472CA9231709DF003B7A89 /* ComDefinitions.h in Headers */,
@@ -307,8 +317,10 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/capstone/4.0.1/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = /usr/local/Cellar/capstone/4.0.1/include;
 			};
 			name = Debug;
 		};
@@ -323,8 +335,10 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/capstone/4.0.1/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = /usr/local/Cellar/capstone/4.0.1/include;
 			};
 			name = Release;
 		};
